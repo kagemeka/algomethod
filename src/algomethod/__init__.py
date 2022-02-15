@@ -3,11 +3,9 @@ from __future__ import annotations
 import dataclasses
 import importlib.metadata
 import json
-import re
 import time
 
 import bs4
-import optext.option
 import requests
 import selenium.webdriver
 
@@ -89,7 +87,7 @@ def fetch_submissions(
     }
     param_string = "&".join(f"{key}={value}" for key, value in params.items())
     driver.get(f"{url}?{param_string}")
-    time.sleep(0.2)
+    time.sleep(0.5)
     soup = _parse_html(driver.page_source)
     rows = soup.table.tbody.find_all("tr")
     submissions = []
@@ -110,17 +108,15 @@ def fetch_submission_code(
 ) -> str:
     url = f"{_SITE_URL}/submissions/{submission_id}"
     driver.get(url)
-    time.sleep(0.2)
+    time.sleep(1)
     soup = _parse_html(driver.page_source)
-    pattern = re.compile(r"^\d+(.*)$")
-    text = soup.pre.text
-    if text is None:
-        return ""
-    code = "\n".join(
-        optext.option.unwrap(re.match(pattern, line))[1]
-        for line in text.split("\n")
-        if line
-    )
+    # pattern = re.compile(r"^\d+(.*)$")
+    code = ""
+    for span in soup.pre.code.find_all("span"):
+        classes = span.get("class")
+        if classes and "linenumber" in classes:
+            continue
+        code += span.text
     return code
 
 
