@@ -1,12 +1,14 @@
-import algomethod
 import unittest
 
 import selext.webdriver
+
+import algomethod
 
 
 class Test(unittest.TestCase):
     def test(self) -> None:
         task_ids = algomethod.fetch_task_ids()
+        print(task_ids)
         with selext.webdriver.create_chrome_driver(headless=True) as driver:
             submissions = algomethod.fetch_submissions(driver, 209, "kagemeka")
             print(submissions)

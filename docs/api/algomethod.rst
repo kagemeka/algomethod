@@ -1,10 +1,10 @@
-package\_2 package
+algomethod package
 ==================
 
 Module contents
 ---------------
 
-.. automodule:: package_2
+.. automodule:: algomethod
    :members:
    :undoc-members:
    :show-inheritance:

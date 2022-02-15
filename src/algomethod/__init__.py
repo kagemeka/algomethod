@@ -1,19 +1,15 @@
 from __future__ import annotations
-import bs4
+
 import dataclasses
+import importlib.metadata
 import json
-
-import requests
-
-# import datetime
-import selenium.webdriver
-
+import re
 import time
 
-import re
+import bs4
 import optext.option
-
-import importlib.metadata
+import requests
+import selenium.webdriver
 
 __version__ = importlib.metadata.version("")
 
@@ -182,4 +178,3 @@ _LANGUAGE_TO_EXTENSIONS = {
 
 def get_extension(language: str) -> str:
     return _LANGUAGE_TO_EXTENSIONS.get(language, [""])[0]
-
