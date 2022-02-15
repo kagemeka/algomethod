@@ -9,7 +9,7 @@ import bs4
 import requests
 import selenium.webdriver
 
-__version__ = importlib.metadata.version("")
+__version__ = importlib.metadata.version("algomethod")
 
 
 _SITE_URL = "https://algo-method.com"
