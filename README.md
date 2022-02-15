@@ -1,3 +1,3 @@
 # Algomethod
 
-algo-method API for Python 
+algo-method API for Python
